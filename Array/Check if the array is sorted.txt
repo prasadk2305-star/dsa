@@ -1,0 +1,20 @@
+class Solution {
+    public boolean check(int[] nums) {
+      int count= 0;
+      for(int i=0; i<nums.length-1; i++)
+      {
+          if(nums[i]>nums[i+1])
+          {
+              count++;
+          }
+      }  
+      if(nums[0]<nums[nums.length-1])
+      {
+            count++;
+      }
+      return count>1?false:true;
+    }
+}
+// just an intelligent solution that just to check two condidtion and thats are 
+// con 1: if array is correctyly soretd and rotted then it start is always geater 
+//        than end ok and one time condidtion is previous element is greater than next 
