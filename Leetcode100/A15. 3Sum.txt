@@ -1,0 +1,37 @@
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> target = new ArrayList<>();
+        for(int i=0; i<nums.length; i++)
+        {
+             if(i==0 || nums[i]!=nums[i-1])
+             {
+                 twosum(nums,i,target);
+             }
+        }
+        return target;
+    }
+
+    public void twosum(int[] nums,int i,List<List<Integer>> target)
+    {
+         int left = i+1;       // here we takes i+1 because i is considerd in sum so reamaing part we find from next part of array;
+         int right = nums.length-1;
+         while(left<right)
+         {
+            int sum = nums[i]+nums[left]+nums[right];
+              if(sum>0){
+                right--;
+              }else if(sum<0){
+                left++;
+              }else{
+                target.add(Arrays.asList(nums[i],nums[left],nums[right]));  // arrays.asList() is used to add value in single line in the list
+                left++;
+                right--;
+                while(left<right && nums[left]==nums[left-1])   // these while just used to avoid same entries here we can run loop on either on left and right 
+                {
+                    left++;
+                }
+              }
+         }
+    }
+}
