@@ -1,0 +1,40 @@
+class MinStack {
+private Node head;
+    public MinStack() {
+                         // these min stack constructor is empty 
+    }
+    
+    public void push(int val) {
+        if(head == null)
+        {
+            head = new Node(val,val,null);       //  just check that head is null then craete with its next as null
+        }else{
+            Node n = new Node(val,Math.min(head.min,val),head);
+            head = n;
+        }
+    }
+    
+    public void pop() {
+         head  = head.nxt;
+    }
+    
+    public int top() {
+        return head.val;
+    }
+    
+    public int getMin() {
+        return head.min;
+    } 
+    class Node{           //  class node    under the class MinStack
+        int val; 
+        int min;
+        Node nxt;
+        public Node(int val,int min,Node nxt)
+        {
+              this.val = val;
+              this.min = min;
+              this.nxt = nxt;
+        }
+    }
+}
+
