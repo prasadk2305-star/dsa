@@ -1,0 +1,33 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+       List<String> ans = new ArrayList<>();
+       helper(0,0,new StringBuilder(),ans,n);
+       return ans; 
+    }
+    // here basically three chcks are there 
+    // base case if opening and closing are equals then return sb
+    //  then 2nd is up until opening is less than n till then add opening bracket
+    //  then 3rd case is up untill closing is less than opening till then add closing brackest 
+     
+    //  
+    public void helper(int o,int c,StringBuilder sb,List<String> ans,int n)
+    {
+       if(o==n && c==n)          
+       {
+          ans.add(new String(sb));
+          return;  
+       }
+       if(o<n)
+       {
+           sb.append('(');
+           helper(o+1,c,sb,ans,n);
+           sb.deleteCharAt(sb.length()-1);
+       }
+       if(o>c)
+       {
+          sb.append(')');
+          helper(o,c+1,sb,ans,n);
+           sb.deleteCharAt(sb.length()-1);
+       }
+    }
+}
