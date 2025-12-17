@@ -1,0 +1,18 @@
+
+/*
+//  the core idea is to think reverse and find from end can we reach to start or not if yes return true otherwise return false
+  here the core logic is just to check nums[i]+i is greater than or equals to final means the number we are comming from end are matched or not if matched then updated final with current index
+*/
+class Solution {
+    public boolean canJump(int[] nums) {
+     int finaal = nums.length-1;
+     for(int i=nums.length-2; i>=0; i--)
+     {
+        if(nums[i]+i>=finaal)
+        {
+           finaal = i;
+        }
+     }   
+     return finaal == 0?true:false;
+    }
+}
