@@ -1,0 +1,28 @@
+//  just pure thinking dont confuse between set index and array index in loop we more worked on set index array is just to get start index to iterate.
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        HashSet<Integer> set  =  new HashSet<>();
+        for(int a: nums)
+        {
+             set.add(a);
+        }
+        int max  = 0;
+        for(int i=0; i<nums.length; i++)
+        {
+            if(set.contains(nums[i]-1))
+            {
+                continue;
+            }else{
+                int curr = 1;
+                int idx = nums[i];
+                while(set.contains(idx+1))
+                {
+                      idx++;
+                      curr++;
+                }
+                max = Math.max(max,curr);
+            }
+        }
+        return max;
+    }
+}
