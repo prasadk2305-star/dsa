@@ -4,15 +4,15 @@ class Solution {
         for(String a: strs)
         {
              String key = sort(a);
-             map.putIfAbsent(key,new ArrayList<String>());
+             map.putIfAbsent(key,new ArrayList<String>());    // putIfAbsent just make a new ArrayList if that key is not present to avoid null pointer exception 
              map.get(key).add(a);
         }
-       return new ArrayList<>(map.values());
+       return new ArrayList<>(map.values());    // here by just new ArrayList<>() we can pass directly values.
     }
     public String sort(String s)
     {
           char[] a = s.toCharArray();
           Arrays.sort(a);
-          return new String(a);
+          return new String(a);   // here we need to pass new string because currently we are dealing with char array
     }
 }
