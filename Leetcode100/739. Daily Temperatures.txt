@@ -1,0 +1,32 @@
+/*
+
+
+
+   so here step is simple run for loop 
+   in that while loop to check st.peek() is lesser that current element is yes the remove stack element update daily array
+   and at the end just push current index in stack 
+
+   and the last step which ever are arrays reamaing numbers pop() them out and in there index add 0 
+   
+*/
+
+class Solution {
+    public int[] dailyTemperatures(int[] temperatures) {
+      Stack<Integer> st = new Stack<>();
+      int daily[] = new int[temperatures.length];
+      st.push(0);
+      for(int i=1; i<temperatures.length; i++) 
+      {
+         while(!(st.isEmpty()) && temperatures[st.peek()] < temperatures[i]){
+            int curr =  st.pop();
+            daily[curr] = i-curr; 
+         }
+         st.push(i);
+      } 
+      while(!st.isEmpty())
+      {
+           daily[st.pop()] = 0;
+      }
+      return daily;   
+    }
+}
