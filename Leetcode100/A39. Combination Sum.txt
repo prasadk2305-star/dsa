@@ -1,0 +1,31 @@
+/*
+  here to try all possible combinations we are not doing i++ in recursion so it can freely move 
+  and on target ==0 after adding return is mandatory otherwise it get into infininte recursion
+
+*/
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+      Arrays.sort(candidates); 
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(target,0,new ArrayList<>(),ans,candidates);
+        return ans;
+    }
+    public void helper(int tar,int idx,List<Integer> curr,List<List<Integer>> ans,int[] nums)
+    {
+        if(tar == 0){
+            ans.add(new ArrayList<>(curr));    // return is mandtory
+            return;
+        }
+        for(int i =idx; i<nums.length; i++)
+        {
+            if(nums[i]<=tar)
+            {
+               curr.add(nums[i]);
+               helper(tar-nums[i],i,curr,ans,nums);    //  here we didnt increas i to check repeated possibility
+               curr.remove(curr.size()-1);
+            }else{
+                break;
+            }
+        }
+    }
+}
