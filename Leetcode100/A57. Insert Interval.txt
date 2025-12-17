@@ -1,0 +1,38 @@
+/*
+   first sort the arrays basiss of starting index
+  three steps answer
+  1 . add all intervals upuntil new intervals startindex is less than intervals end
+  2.  iterate over  new intervals end index is graeter or equals to start index of intervals
+  3 . add remiang intervals 
+
+*/
+
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        int s = newInterval[0];
+        int e = newInterval[1];
+        ArrayList<int[]> ans = new ArrayList<>();
+        Arrays.sort(intervals,(a,b)->Integer.compare(a[0],b[0]));
+         int i=0;
+         while(i<intervals.length && intervals[i][1]<s)
+         {
+           ans.add(intervals[i]);
+           i++;
+         }
+         int si = s;     //  here we can do without si just consider it as s
+         int ei = e;     // same for ei(ending index)
+         while(i<intervals.length && intervals[i][0]<=e)
+         {
+             si = Math.min(si,intervals[i][0]);
+             ei  = Math.max(ei,intervals[i][1]);
+             i++;
+         }
+         ans.add(new int[]{si,ei});
+         while(i<intervals.length)
+         {
+              ans.add(intervals[i]);      //  to add whole intervals add(intervals[i])
+              i++;
+         }
+     return ans.toArray(new int[ans.size()][]);   // at the time of return convert the list into array 
+    }
+}
