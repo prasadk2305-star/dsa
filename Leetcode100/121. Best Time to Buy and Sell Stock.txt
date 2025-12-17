@@ -3,7 +3,7 @@ class Solution {
         int l = 0;
         int r = 0;
         int max = 0;
-        while(r<prices.length)
+        while(r<prices.length)   // here we are more inclined towards right pointer we only update left when right is lesser just that keep in mind
         {
              max = Math.max(max,prices[r]-prices[l]);
              if(prices[r]<prices[l])
