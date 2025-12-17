@@ -1,0 +1,26 @@
+/*
+
+   so here we need to understand that we need to work from dummy node 
+   as we are some time removing the head 
+   thats why we start from dummy slow and fast both and at the end we return dummy.next as expected
+
+*/
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+      ListNode dummy = new ListNode(1);
+      dummy.next = head;
+      ListNode slow = dummy;
+      ListNode fast = dummy;
+      for(int i=0; i<=n; i++)      //  here we start from 0 to <=n due to we stop at one step before ok 
+      {
+          fast = fast.next;
+      }  
+      while(fast!=null)
+      {
+          slow = slow.next;
+          fast = fast.next;
+      }
+      slow.next = slow.next.next;    // and to remove the node we just simplly update slow.next to next.next;
+      return dummy.next;
+    }
+}
