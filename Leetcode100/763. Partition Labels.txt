@@ -1,3 +1,9 @@
+/*
+    here logic is to track the last index of each chracter
+      and on the basis of that tarck the start and end index of the charcter where end is the max index of charcter in that parttion upto that our parttion is valid
+      if i == end at that time we just count partitoin length and add it into the ans and set start and end as i+1
+*/
+
 class Solution {
     public List<Integer> partitionLabels(String s) {
         int[] a = new int[26];
