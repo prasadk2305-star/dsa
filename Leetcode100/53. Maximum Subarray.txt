@@ -1,0 +1,24 @@
+
+/*
+   just a pure coding just traverse in single direction 
+     if currsum is less than zero just update max and make it zero 
+     otherwise in down just update max in each step 
+*/
+class Solution {
+    public int maxSubArray(int[] nums) {
+       int max = Integer.MIN_VALUE;
+       int curr = 0;
+        for(int i=0; i<nums.length; i++)
+        {
+             curr = curr+nums[i];
+            if(curr<0)
+            {
+                max = Math.max(max,curr);
+                curr = 0;
+            }else{
+                max = Math.max(max,curr);
+            }
+        } 
+        return max; 
+  }
+}
