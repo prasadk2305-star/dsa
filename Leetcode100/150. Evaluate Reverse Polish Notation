@@ -1,0 +1,37 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+       Stack<Integer> stack = new Stack<>();
+       for(String s : tokens)
+       {
+            if(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/"))
+            {
+                   if(stack.size()<2)  
+                   {
+                      return -1;
+                   }
+                    int b = stack.pop();
+                    int a = stack.pop();
+                    stack.push(find(s,a,b));
+            }else{
+                 stack.push(Integer.parseInt(s));     // to convert string into integer.
+            }
+           
+       } 
+       return stack.isEmpty()?0:stack.peek();
+    }
+    public int find(String c,int a ,int b)
+    {
+        switch(c)
+        {
+            case "+":
+              return a+b;
+            case "-":
+              return a-b;
+            case "*":
+              return a*b;
+            case "/":
+              return a/b;
+        }
+        return 0;
+    }
+}
