@@ -1,0 +1,41 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        int rc = board.length;
+        HashSet<Character>[] row = new HashSet[rc];  //  just consider it as array and accordingly set size
+         HashSet<Character>[] col = new HashSet[rc];
+          HashSet<Character>[] box = new HashSet[rc];
+          for(int i=0; i<board.length; i++)
+          {
+               row[i] = new HashSet<>();     //  it is must step to avoid the null pointer exception
+               col[i] = new HashSet<>();
+               box[i] = new HashSet<>();
+          }
+
+
+          for(int r=0; r<board.length; r++)
+          {
+             for(int c=0; c<board[0].length; c++)     //   and yes row comapre with r ,columns comapre with c,and boxes compare with custome index idx where r/3*3+c/3 formula.
+             {
+                  if(board[r][c] == '.')
+                  {
+                    continue;
+                  }
+                  if(row[r].contains(board[r][c])){
+                    return false;
+                  }
+                  row[r].add(board[r][c]);
+                  if(col[c].contains(board[r][c])){
+                    return false;
+                  }
+                  col[c].add(board[r][c]);
+                  int idx = (r/3)*3+c/3;
+                  if(box[idx].contains(board[r][c])){
+                    return false;
+                  }
+                  box[idx].add(board[r][c]);
+             }
+            
+          }
+           return true;
+    }
+}
