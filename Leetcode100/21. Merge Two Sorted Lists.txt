@@ -1,0 +1,37 @@
+/*
+   here must known fact is list1 is itself representing current pointer 
+   thats why for same operation two different behaviour it does 
+   // ie are
+   //    ans.next = list1;  in while loop where just add current node
+   //     ans.next = list1;   in if statement whole next nodes are get added 
+   // these is just due to as we are urgent update list1 in while 
+   // and in if we are just give that state therfore it get fully added
+
+*/
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode dummy = new ListNode(1);         // initially dummy node is created just to track the head.
+        ListNode ans = dummy;
+        while(list1!=null && list2!=null)     //  here used && 
+        {
+             if(list1.val<list2.val)
+             {
+                 ans.next = list1;
+                 list1 = list1.next;
+             }else{
+                ans.next = list2;
+                list2 = list2.next;
+             }
+             ans = ans.next;              // ans also need to updated 
+        }
+        if(list1==null)
+        {
+            ans.next = list2;
+        }
+        if(list2 == null)
+        {
+            ans.next = list1;
+        }
+        return dummy.next;
+    }
+}
