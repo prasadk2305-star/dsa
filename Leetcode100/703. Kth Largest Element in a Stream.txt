@@ -1,0 +1,32 @@
+/*
+
+for these main logic is to decalre q as class variable and at the time of add used class method add where we implent the logic of kth KthLargest eleemnt
+
+*/
+
+class KthLargest {
+    PriorityQueue<Integer> q;
+    int k;
+    public KthLargest(int k, int[] nums) {
+        this.k = k;
+        this.q = new PriorityQueue<>();
+        for(int i: nums)
+        {
+           add(i);
+        }
+    }
+    
+    public int add(int val) {
+        if(q.size()<k){
+            q.add(val);
+        }else{
+            if(q.peek()<val)
+            {
+                q.poll();
+                q.offer(val);
+            }
+        }
+        return q.peek();
+    }
+}
+
