@@ -1,0 +1,22 @@
+/*
+recursion is core idea here and at the recursion starting base case is to add curr in ans
+
+*/
+
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(0,new ArrayList<>(),ans,nums);
+        return ans;
+    }
+    public void helper(int idx,List<Integer> curr,List<List<Integer>> ans,int[] nums)
+    {
+         ans.add(new ArrayList<>(curr));
+         for(int i=idx; i<nums.length; i++)
+         {
+             curr.add(nums[i]);
+             helper(i+1,curr,ans,nums);
+             curr.remove(curr.size()-1);
+         }
+    }
+}
