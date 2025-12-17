@@ -1,0 +1,43 @@
+// deleteCharAt is function not just delete to remove chracter from sb
+// also for Character c is capital
+// and to return empty string we just need to pass uninitilaize string
+import java.util.*;
+public class Main
+{
+    public static String encode(List<String> strs)
+    {
+       if(strs.size() == 0)
+       {
+           return Character.toString((char)258);
+       }
+       String sep = Character.toString((char) 257);
+       StringBuilder sb = new StringBuilder();
+       for(String s: strs)
+       {
+           sb.append(s);
+           sb.append(sep);
+       }
+       sb.deleteCharAt(sb.length()-1);   
+       return sb.toString();
+    }
+     public static List<String> decode(String strs)
+    {
+        if(strs.equals((char) 258))
+        {
+            return new ArrayList<>();
+        }
+        String sep = Character.toString((char) 257);
+        List<String> ans = new ArrayList<>();
+        ans = Arrays.asList(strs.split(sep,-1));
+        return ans;
+        
+    }
+	public static void main(String[] args) {
+	   List<String> list = Arrays.asList("hello", "world", "Prasad");
+        String encoded = encode(list);
+        System.out.println("Encoded: " + encoded);
+
+        List<String> decoded = decode(encoded);
+        System.out.println("Decoded: " + decoded);
+	}
+}
