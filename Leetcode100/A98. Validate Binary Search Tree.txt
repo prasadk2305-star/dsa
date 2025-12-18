@@ -1,0 +1,28 @@
+/*
+here stepwise solution is there to first check root is null or not if yes then return true
+next step is to check inorder of root.left
+after that we check prev values is lessthan or equals  or not
+at the end update prev
+and return inorder of root.right 
+
+*/
+class Solution {
+    Integer prev = null;
+    public boolean isValidBST(TreeNode root) {   
+        return inorder(root);
+    }
+    public boolean inorder(TreeNode root)
+    {
+        if(root == null){
+            return true;
+        }
+        if(!inorder(root.left)){
+            return false;
+        }
+        if(prev!=null && root.val<=prev){
+            return false;
+        }
+        prev = root.val;  
+        return inorder(root.right);
+    }
+}
