@@ -1,0 +1,27 @@
+/*
+
+  here logic is simple and that is to find height 
+  but track one gloabal variable of diameter to calculate the currrent left+right to just check that is either a diameter. 
+*/
+class Solution {
+    int dia = 0;
+    public int diameterOfBinaryTree(TreeNode root) {
+        if(root == null)
+        {
+            return 0;
+        }
+        helper(root);
+        return dia;
+    }
+    public int helper(TreeNode root)
+    {
+         if(root == null)
+         {
+            return 0;
+         }
+         int left = helper(root.left);
+         int right = helper(root.right);
+          dia = Math.max(left+right,dia);
+          return Math.max(left,right)+1;
+    }
+}
