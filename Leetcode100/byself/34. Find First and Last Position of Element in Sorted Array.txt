@@ -1,0 +1,45 @@
+/*
+
+here we have to return the indexes of first and last occurances 
+thats why we return upper and lower bound of that numbwer and track the frequencies 
+here just one click is that if that number is not presernt at that time we ddnt have to return the nearer elemtn we have to return its -1 
+so for that we have add countet to check that number is presernt or not .
+*/
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int ceil = -1;
+        int floor = -1;
+        int l = 0;
+        int r = nums.length-1;
+        int fcnt =0;
+        int ccnt = 0;
+        while(l<=r)
+        {
+           int m = l+(r-l)/2;
+           if(nums[m] == target)fcnt++;
+           if(nums[m]<=target){
+               floor = m;
+               l = m+1;
+            }else{
+                r = m-1;
+            }
+        }
+        l=0;
+        r=nums.length-1;
+         while(l<=r)
+        {
+           int m = l+(r-l)/2;
+            if(nums[m] == target)ccnt++;
+           if(nums[m]>=target){
+               ceil = m;
+               r = m-1;
+            }else{
+                l = m+1;
+            }
+        }
+        int[] ans = new int[2];
+        ans[0] = ccnt>0?ceil:-1;
+        ans[1] = fcnt>0?floor:-1;
+        return ans;
+    }
+}
