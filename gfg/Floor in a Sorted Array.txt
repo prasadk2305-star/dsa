@@ -1,0 +1,37 @@
+/*
+
+this is array lower bound problem 
+here we are finding higest index of number which is lesser or equls to that number
+[ 1,3,5,6,7,10]  here if target is 8 then
+answer is index 4 because at 4 no is 7 which is lesser than 8 and have highest index.
+
+[1,5,10]  and target is 20
+then answer is index 3 which is higest index lesser than 20
+
+[5,10,15 ]  and target is 3
+then answer will be -1
+as -1 is the only index which is lesser than 3 and highest index 
+
+*/
+
+class Solution {
+    public int findFloor(int[] arr, int x) {
+        // code here
+        int ans = -1;
+        int left = 0;
+        int right = arr.length-1;
+        
+        while(left<=right)
+        {
+            int mid  = left+(right-left)/2;
+            if(arr[mid]<=x)
+            {                                     // here is number is lesser and equal answer update and as loop beark it return last value.
+                ans = mid;
+                left = mid+1;
+            }else{
+                right = mid-1;
+            }
+        }
+        return ans;
+    }
+}
