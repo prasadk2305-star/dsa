@@ -1,0 +1,40 @@
+/*
+here the basic logic is of binary search that we get elemnt on mid
+and here extra condtion is to check first that which half is soretd 
+so in that soretd half we have to check elemnt is present or not
+if present then updated respecitive positon othere go to other half.
+
+*/
+class Solution {
+    int search(int[] arr, int key) {
+        // code here
+        int left =0;
+        int right = arr.length-1;
+        while(left<=right)
+        {
+            int mid = left+right-left/2;
+            if(arr[mid] == key) return mid;
+            //when right half is soreted 
+            if(arr[mid]<=arr[right])
+            {
+              // and key is in the range
+                if(arr[mid]<key && arr[right]>=key)
+                {
+                    left = mid+1;
+                }else{
+                    right = mid-1;
+                }
+                // left half is soretd 
+            }else{
+                //  and key is in the range
+                 if(arr[mid]>key && arr[left]<=key)
+                {
+                    right = mid-1;
+                }else{
+                    left = mid+1;
+                }
+            }
+        }
+        return -1;
+    }
+}
