@@ -1,0 +1,23 @@
+/*
+
+here we use just simple binary search logic and use clear trick to eleminate the sorted part 
+where either left is smaller that mid or right is greater than mid by which we are eliminating one half and continue until get smallest part .
+
+*/
+
+class Solution {
+    public int findMin(int[] nums) {
+        int left =0;
+        int right = nums.length-1;
+        while(left<right)
+        {
+             int mid = left+(right-left)/2;
+             if(nums[mid]<=nums[right]){
+                right = mid;
+             }else{
+                left = mid+1;
+             }
+        }
+        return nums[left];
+    }
+}
