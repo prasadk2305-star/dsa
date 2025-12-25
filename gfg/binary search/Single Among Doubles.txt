@@ -1,0 +1,30 @@
+/*
+    so here we first make the array in the way that both array contains almost correct part means if mean
+    is at staring of any sequence then we push to end of that sequence that we get complete differention 
+    after that we check which part has odd length and that was the part where single elemnt cosist
+    so we continue with that part 
+*/
+class Sol {
+    public static int search(int n, int arr[]) {
+        // your code here
+        int left = 0;
+        int right = arr.length-1;
+        while(left<right)
+        {
+          int mid = left+(right-left)/2;
+          if(arr[mid] == arr[mid+1])
+          {
+              mid = mid+1;
+          }
+          int len = mid-left+1;
+          if(len%2==0)
+          {
+              left = mid+1;
+          }else{
+              right= mid-1;
+          }
+
+        }
+      return arr[left];
+    }
+}
