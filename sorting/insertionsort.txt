@@ -1,0 +1,29 @@
+/*
+so here we do reverse shifting and at the end we add our key at correct posiiton
+for example 
+    4 3 1
+    key  = 1;
+    we check its previous are smallwer or not if not then we shift them backward
+    4 3 3   // and we are storing value of 1 in key 
+    4 4 3
+    and at the end 4 will be upated with key as it get perfect position
+
+*/
+
+class Solution {
+    // Please change the array in-place
+    public void insertionSort(int arr[]) {
+        // code here
+        for(int i=1; i<arr.length; i++)
+        {
+          int key = arr[i];
+          int j=i-1;
+           while(j>=0 && arr[j]>key )
+           {
+               arr[j+1] = arr[j];
+               j--;
+           }
+           arr[j+1] = key;
+        }
+    }
+}
