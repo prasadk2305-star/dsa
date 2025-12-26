@@ -1,0 +1,38 @@
+/*
+
+boyers-moore majority majorityElement algorithm it is
+
+here we traverse over array and set currentindex as max and increase the count if same elemnt is there and decrese the count if different eleement come 
+and if count become zero at that time we update max means we set new max as current index and at the end we just check its count if it is greater that arr.length/2 then return it otherwise we return -1;
+
+
+*/
+class Solution {
+    public int majorityElement(int[] nums) {
+      int i=1;
+      int max = nums[0];
+      int maxcnt = 1;
+      while(i<nums.length)
+      {
+           if(maxcnt==0){
+             max = nums[i];
+             maxcnt=0;
+           }
+           if(max == nums[i]){
+              maxcnt++;
+           }else{
+              maxcnt--;
+           }
+           i++;
+      }
+      int ans =0;
+      for(int j=0; j<nums.length; j++)
+      {
+        if(max == nums[j])
+        {
+            ans++;
+        }
+      }
+      return ans>nums.length/2?max:-1;
+    }
+}
