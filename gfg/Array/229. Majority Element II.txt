@@ -1,0 +1,28 @@
+/*
+   so here we first sort our array
+   and then go from staring to end and check at the end that currnumber count is greter that arr.size()/3 or not if yes then we add it in our 
+   ans list 
+*/
+
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+         Arrays.sort(nums);
+         List<Integer> ans =  new ArrayList<>();
+         int i=0;
+         while(i<nums.length)
+         {
+            int curr = nums[i];
+            int currsum = 0;
+            while(i<nums.length && nums[i] == curr)
+            {
+              currsum++; 
+              i++;
+            }
+            if(currsum>nums.length/3)
+            {
+               ans.add(curr);
+            }
+         }
+        return ans;
+    }
+}
