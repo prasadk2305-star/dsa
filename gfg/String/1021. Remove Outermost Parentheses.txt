@@ -1,0 +1,32 @@
+/*
+
+so here we track one counter which is wheenver 0 we wont append it in string and for closing with reduce it and same 
+for closing when counter is 1 at that time we reduce it but not append in string 
+so by these we get our expected answer
+
+
+*/
+class Solution {
+    public String removeOuterParentheses(String s) {
+      StringBuilder sb = new StringBuilder();
+      int cnt=0;
+      for(int i=0; i<s.length(); i++)
+      {
+            if(s.charAt(i)=='(' && cnt==0)
+            {
+                cnt++;
+            }else if(s.charAt(i) == '(')
+            {
+                 cnt++;
+                 sb.append('(');
+            }else if(s.charAt(i)==')' && cnt==1)
+            {
+               cnt--;
+            }else{
+                cnt--;
+                sb.append(')');
+            }
+      }
+      return sb.toString();  
+    }
+}
