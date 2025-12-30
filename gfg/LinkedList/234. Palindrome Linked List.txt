@@ -1,0 +1,41 @@
+/*
+
+here we check is it palindrom by revrsing ll from middle 
+so from middle to end we reverse a list and that reverse list head we track with the big list head upto the reverse list's end
+so here few things need to know
+ 1. reverse a linked list
+ 2. middle of linked list 
+
+ so it need practice and perfection as visualization of big problem is kind of hard
+
+*/
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        if(head==null || head.next==null) return true;
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null && fast.next!=null)
+        {
+          fast = fast.next.next;
+          slow = slow.next;
+        }
+        ListNode prev = null;
+        ListNode curr = slow;    // so here reverse linked list we start from middle itself to handle odd even length linkedlist 
+        while(curr!=null)
+        {
+           ListNode nxt = curr.next;
+           curr.next = prev;
+           prev = curr;
+           curr = nxt;
+        }
+        slow = prev;    // here last time we add curr but it is null so tracked last index is prev 
+        ListNode first = head;
+        ListNode sec = prev;
+        while(sec!=null){
+            if(first.val!=sec.val) return false;
+            first = first.next;
+            sec = sec.next;
+        }
+        return true;
+    }
+}
