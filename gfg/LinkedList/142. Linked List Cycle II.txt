@@ -1,0 +1,27 @@
+/*
+
+here a small algorithm worked we first track the meeting point with tortoize and hare method 
+and that point we make fast start and from head we start slow for one shift 
+so at what point they both meet is the starting point of linkedlist
+
+*/
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        if(head==null || head.next==null) return null;
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null && fast.next!=null)
+        {
+             slow = slow.next;
+             fast = fast.next.next;
+             if(fast == slow) break;
+             if(fast==null || fast.next==null)return null;
+        }
+        slow = head;
+        while(slow!=fast){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+}
