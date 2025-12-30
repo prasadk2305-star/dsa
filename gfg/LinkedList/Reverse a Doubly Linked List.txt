@@ -1,0 +1,25 @@
+/*
+   linked list revwerse a doubly linked list
+*/
+class Solution {
+    public Node reverse(Node head) {
+        if(head.next == null)
+        {
+            return head;
+        }
+        Node ans = head;
+        Node temp = head;
+        while(temp!=null)
+        {
+            if(temp.next==null)ans = temp;
+            Node prev = temp.next;
+            temp.next = temp.prev;
+            temp.prev = prev;
+            
+            temp = prev;
+        }
+        
+        return ans;
+      
+    }
+}
