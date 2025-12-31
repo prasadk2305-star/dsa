@@ -1,0 +1,33 @@
+
+/*
+
+here made mistake by myself at the same time slow and fast make sanme that make a first condition true  itself so both need to be alternate
+
+and logic is simple from the point of meet we traverse until they both again meet so that gives length by tracking the counter
+
+*/
+class Solution {
+    public int lengthOfLoop(Node head) {
+       Node slow  = head;
+       Node fast = head.next;
+       int f=0;
+       while(fast!=null && fast.next!=null)
+       {
+           if(fast == slow){
+               f = 1;
+               break;
+           }
+           slow = slow.next;
+           fast = fast.next.next;
+       }
+       if(f==0) return 0;
+       fast = fast.next;
+       int count = 1;
+       while(fast!=slow)
+       {
+           count++;
+           fast = fast.next;
+       }
+       return count;
+    }
+}
