@@ -1,0 +1,56 @@
+/*
+  here in merge logic we did two  step process
+  1 .  store first half in sepearte array and second half in seperate array
+  2 .  now we did the two sorted array approach to sort that two array
+       but whatever result is there we update in original array
+
+*/
+class Solution {
+
+    void mergeSort(int arr[], int l, int r) {
+        
+        if(l<r)
+        {
+            int mid = l+(r-l)/2;
+            mergeSort(arr,l,mid);
+            mergeSort(arr,mid+1,r);
+            merge(arr,l,mid,mid+1,r);
+        }
+    }
+    void merge(int arr[],int left1,int right1,int left2,int right2)
+    {
+       int a1[] = new int[right1-left1+1];
+       int a2[] = new int[right2-left2+1];
+       int a=0;
+       int b=0;
+       for(int i=left1; i<=right1; i++){
+           a1[a++] = arr[i];
+       }
+       for(int i=left2; i<=right2; i++){
+           a2[b++] = arr[i];
+       }
+       int x=0;
+       int y=0;
+       while(x<a1.length && y<a2.length)
+       {
+           if(a1[x]>a2[y])
+           {
+               arr[left1++] = a2[y++];
+           }else{
+               arr[left1++] = a1[x++];
+           }
+       }
+       if(x==a1.length){
+           while(y<a2.length)
+           {
+               arr[left1++] = a2[y++];
+           }
+       }else{
+           while(x<a1.length)
+           {
+               arr[left1++] = a1[x++];
+           }
+       }
+       
+    }
+}
