@@ -1,0 +1,28 @@
+/*
+  here solution is not simple as some time value goes beyond the double 
+  and if n is bigger then it will always multiply and leads to endless result 
+  so to handle that we have use cleaver trick og using half portion 
+  means if n = 10 then we multiply n=5 's answer with itself and in recursion it reduces overall time complexity to log n instead of n 
+  and also to handle negative value we just update x to 1/x and remove n's negative sign
+
+  and in half vala portion to handle the odd value we multiply with x that help us to calculate the remaning value.
+*/
+class Solution {
+    public double myPow(double x, int n) {
+        if(n<0){
+           x = 1/x;
+           n = -n;
+        }
+         return onehalf(x,n);
+    }
+    public double onehalf(double x,int n){
+        if(n==0) return 1;
+        double half = onehalf(x,n/2);
+        if(n%2==0)
+        {
+            return half*half;
+        }else{
+            return half*half*x;
+        }
+    }
+}
