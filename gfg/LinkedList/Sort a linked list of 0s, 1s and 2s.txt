@@ -1,0 +1,40 @@
+/*
+  here without going in complex logic like we do array
+
+  here we simply make three list respect to 0,1,2
+  with its correct pointer tracking and add node if current value is that respective list value 
+  and at the end as per sequnece of 0,1,2 we add the list end to another list start 
+
+*/
+class Solution {
+    public Node segregate(Node head) {
+      Node oned = new Node(0);
+      Node twod = new Node(0);
+      Node zerod = new Node(0);
+      Node one = oned,two = twod,zero = zerod;
+      Node curr = head;
+      while(curr!=null)
+      {
+          if(curr.data == 0){
+              zero.next = curr;
+              zero = zero.next;
+          }else if(curr.data ==1){
+              one.next = curr;
+              one = one.next;
+          }else{
+              two.next = curr;
+              two = two.next;
+          }
+          curr = curr.next;
+      }
+      
+      zero.next =(oned.next==null)?twod.next:oned.next;  // here its importatnt to check 
+                                                        // that 1's list is not null na 
+                                                        // otherwise we add null i between 
+                                                        // of our answer correct ewquence 
+      one.next = twod.next;
+      two.next=null;
+      return zerod.next;
+      
+    }
+}
