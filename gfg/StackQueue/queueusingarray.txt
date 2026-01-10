@@ -1,0 +1,52 @@
+/*
+
+here we use the priority queue logic 
+means in general we do rear = rear+1
+        but here we do rear = (rear+1)% capacity  that help us to travsers in circular form 
+*/
+class myQueue {
+    int[] q;
+    int front,rear,size,capacity;
+    public myQueue(int n) {
+      q = new int[n];
+      front = 0;
+      rear = -1;
+      size = 0;
+      capacity = n;
+    }
+
+    public boolean isEmpty() {
+      return size == 0;
+    }
+
+    public boolean isFull() {
+        return size == capacity;
+    }
+
+    public void enqueue(int x) {
+       if(!isFull()){
+          rear = (rear+1)%capacity;
+          q[rear] = x;
+          size++;
+       }  
+    }
+
+    public int dequeue() {
+      if(!isEmpty()){
+          int val = q[front];
+          front = (front+1)%capacity;
+          size--;
+          return val;
+      }else return -1;
+    }
+
+    public int getFront() {
+        if(!isEmpty()) return q[front];
+        else return -1;
+    }
+
+    public int getRear() {
+        if(!isEmpty()) return q[rear];
+        else return -1;
+    }
+}
