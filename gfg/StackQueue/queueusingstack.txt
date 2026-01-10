@@ -1,0 +1,29 @@
+/*
+    it simple but time complex process
+    that on every insert we delelete from start upto current add(last add) and add it at end so stack like structure happens.
+*/
+class myStack {
+    Queue<Integer> q = new LinkedList<>();
+
+    void push(int x) {
+        q.add(x);
+        for(int i=1;i<q.size(); i++)
+        {
+            q.add(q.remove());
+        }
+    }
+
+    int pop() {
+          if(!q.isEmpty()) return q.remove();
+          else return -1;
+    }
+
+    int top() {
+        if(!q.isEmpty()) return q.peek();
+        else return -1;
+    }
+
+    int size() {
+        return q.size();
+    }
+}
